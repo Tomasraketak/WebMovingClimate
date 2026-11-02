@@ -93,7 +93,6 @@ figcaption { font-size: 0.85rem; color: var(--muted); padding-top: 10px; }
 .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .cols > div { display: grid; gap: 8px; align-content: start; }
 .cols p { color: var(--muted); font-size: 0.98rem; }
-.cols .tag { font-size: 0.82rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .cols .us .tag { color: var(--ink); box-shadow: inset 0 -3px 0 var(--accent); justify-self: start; }
 @media (max-width: 820px) { .cols { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 
@@ -102,11 +101,54 @@ figcaption { font-size: 0.85rem; color: var(--muted); padding-top: 10px; }
 .photo { border-radius: 6px; overflow: hidden; background: var(--bg-2); }
 .photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 64%; }
 
+/* Karty se srovnáním zdrojů dat. Na mobilu se první dvě posouvají do strany. */
+.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.pair { display: contents; }
+.card { display: grid; gap: 8px; align-content: start; }
+.card .pic { border-radius: 6px; overflow: hidden; background: var(--bg-2); margin-bottom: 8px; border: 1px solid var(--line); }
+.card .pic svg, .card .pic img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.card .tag, .cols .tag { font-size: 0.82rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.card p { color: var(--muted); font-size: 0.98rem; }
+.card.us .tag { color: var(--ink); box-shadow: inset 0 -3px 0 var(--accent); justify-self: start; }
+.card.us .pic { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.nc { text-transform: none; }
+.il-bg { fill: var(--bg-2); }
+.il-soft { fill: var(--line); }
+.il-fill { fill: var(--bg); }
+.il-ink { fill: var(--ink); }
+.il-line { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.il-fill.il-line { fill: var(--bg); }
+.il-thin { fill: none; stroke: var(--ink); stroke-width: 1.3; opacity: 0.55; }
+.il-tree { fill: var(--muted); opacity: 0.28; }
+.il-hot { fill: var(--accent); }
+.il-warm { fill: var(--accent); opacity: 0.55; }
+.il-ring { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0.5; }
+.il-cone { fill: var(--accent); opacity: 0.1; }
+.il-dash { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 5 5; }
+.il-asphalt { fill: var(--accent); opacity: 0.35; }
+.il-lane { fill: none; stroke: var(--bg); stroke-width: 2; stroke-dasharray: 14 10; }
+.il-cloud { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
+@media (max-width: 820px) {
+  .compare { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .pair { display: grid; grid-auto-flow: column; grid-auto-columns: 84%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; padding-bottom: 6px; overscroll-behavior-x: contain; }
+  .pair > .card { scroll-snap-align: start; }
+}
+
+.trust { padding-block: 48px; }
+.trust h2 { font-size: 1rem; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-bottom: 20px; }
+.trust ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.trust li { display: grid; gap: 4px; padding-left: 16px; border-left: 3px solid var(--accent); }
+.trust b { font-weight: 600; font-size: 1.05rem; }
+.trust span { color: var(--muted); font-size: 0.95rem; }
+@media (max-width: 820px) { .trust ul { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
+
 dl.spec { margin: 0; }
 dl.spec div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
 dl.spec div:first-child { border-top: 1px solid var(--line); }
 dl.spec dt { font-weight: 500; }
 dl.spec dd { margin: 0; color: var(--muted); }
+@media (max-width: 560px) { dl.spec div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+textarea::placeholder { color: var(--muted); opacity: 0.8; }
 
 .team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .team img { width: 100%; max-width: 260px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; margin-bottom: 14px; background: var(--bg-2); }
@@ -161,16 +203,16 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
   <section id="merime">
     <div class="wrap">
       <div class="head">
-        <h2>Už měříme v Neratovicích</h2>
-        <p>V Neratovicích běží pilotní měření. Zatím jsme nasbírali přes 5 000 měřicích bodů z ulic města.</p>
+        <h2>Pilotní provoz v Neratovicích: Data z reálných ulic</h2>
+        <p>V ulicích Neratovic již probíhá testovací nasazení na komunální technice s více než 5 000 nasbíranými měřicími body. Mobilní sběr dat v praxi odhaluje mikroklimatické extrémy, které stacionární síť nemůže zachytit.</p>
       </div>
       <div class="fact">
         <b>1,8 °C</b>
-        <p>Takový rozdíl jsme 29. 10. 2026 ve 14:27 naměřili mezi dvěma ulicemi vzdálenými 150 metrů, ve stejné minutě. Oficiální meteostanice nezachytí ani jednu z nich.</p>
+        <p>Rozdíl teploty vzduchu naměřený během jediné minuty mezi dvěma ulicemi vzdálenými 150 metrů – i na konci října (29. 10. 2026, 14:27). V letních vlnách veder tyto rozdíly přesahují 5 °C. Oficiální stacionární stanice přitom nevidí ani jednu z těchto ulic.</p>
       </div>
       <figure>
         <div class="shot"><img src="img/mapa.jpg" width="1899" height="860" alt="Mapa Neratovic z dashboardu Moving Climate. Vlevo ulice obarvené podle naměřené teploty, vpravo teplotní mapa části města."></div>
-        <figcaption>Mapa z našeho dashboardu s měřením z Neratovic. Podklad © přispěvatelé OpenStreetMap, OpenFreeMap.</figcaption>
+        <figcaption>Vizualizace výstupů v rozhraní MovingClimate: kombinace uličních měření z vozidel a plošného modelu teplotních ostrovů. Mapový podklad © přispěvatelé OpenStreetMap, OpenFreeMap.</figcaption>
       </figure>
     </div>
   </section>
@@ -178,13 +220,80 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
   <section id="proc">
     <div class="wrap">
       <div class="head">
-        <h2>Kde je ve městě v létě největší horko?</h2>
-        <p>Aby nové stromy a zeleň pomohly tam, kde je to nejvíc potřeba, potřebuje město vědět, které ulice se přehřívají. Dostupné zdroje dat na to odpověď dávají jen částečně.</p>
+        <h2>Plánujte výsadbu zeleně a ochlazování města na základě dat, ne odhadů</h2>
+        <p>Výsadba každého vzrostlého stromu v uličním profilu i úpravy veřejných prostranství představují pro městský rozpočet statisícové investice. Aby opatření mířila tam, kde skutečně sníží tepelnou zátěž obyvatel, potřebuje město detailní přehled v úrovni jednotlivých ulic.</p>
       </div>
-      <div class="cols">
-        <div><span class="tag">Meteostanice</span><h3>Přesné, ale jen v několika bodech</h3><p>Měří teplotu vzduchu, jenže jich je ve městě málo a často stojí mimo ulice.</p></div>
-        <div><span class="tag">Satelitní a letecké snímky</span><h3>Celé město, ale jen povrch</h3><p>Ukazují teplotu střech a asfaltu, ne vzduchu, a jen v okamžiku přeletu.</p></div>
-        <div class="us"><span class="tag">Moving Climate</span><h3>Vzduch v ulicích, kudy vozy jezdí</h3><p>Stanice na vozech měří teplotu vzduchu ve výšce ulice při každé jízdě.</p></div>
+      <div class="compare">
+        <div class="pair" tabindex="0" aria-label="Současné zdroje dat, posuňte do strany">
+          <article class="card">
+            <div class="pic">
+              <svg viewBox="0 0 400 300" role="img" aria-label="Ilustrace stacionární meteostanice v parku">
+                <rect width="400" height="300" class="il-bg"/>
+                <rect y="242" width="400" height="58" class="il-soft"/>
+                <line x1="72" y1="242" x2="72" y2="178" class="il-line"/>
+                <circle cx="72" cy="150" r="42" class="il-tree"/>
+                <line x1="352" y1="242" x2="352" y2="196" class="il-line"/>
+                <circle cx="352" cy="174" r="30" class="il-tree"/>
+                <path d="M128 230 H312 M128 214 H312" class="il-thin"/>
+                <path d="M136 206 V242 M164 206 V242 M192 206 V242 M220 206 V242 M248 206 V242 M276 206 V242 M304 206 V242" class="il-thin"/>
+                <path d="M172 172 V242 M228 172 V242 M172 214 L228 196 M228 214 L172 196" class="il-line"/>
+                <polygon points="142,112 258,112 248,98 152,98" class="il-fill il-line"/>
+                <rect x="150" y="112" width="100" height="62" class="il-fill il-line"/>
+                <path d="M158 124 H242 M158 136 H242 M158 148 H242 M158 160 H242" class="il-thin"/>
+                <line x1="290" y1="242" x2="290" y2="58" class="il-line"/>
+                <path d="M272 58 H308" class="il-line"/>
+                <path d="M266 58 a6 6 0 0 0 12 0 M302 58 a6 6 0 0 0 12 0" class="il-line"/>
+                <path d="M290 80 H318" class="il-line"/>
+                <polygon points="318,72 330,80 318,88" class="il-ink"/>
+                <circle cx="200" cy="68" r="7" class="il-hot"/>
+                <circle cx="200" cy="68" r="16" class="il-ring"/>
+              </svg>
+            </div>
+            <span class="tag">Stacionární meteostanice</span>
+            <h3>Přesné, ale izolované body</h3>
+            <p>Měří pouze jedno konkrétní místo – zpravidla v parku či na okraji zástavby. Pokrytí celého města stacionární sítí by vyžadovalo stovky jednotek a milionové investice.</p>
+          </article>
+          <article class="card">
+            <div class="pic">
+              <svg viewBox="0 0 400 300" role="img" aria-label="Ilustrace družice snímající rozpálené střechy a asfalt, část města zakrývá oblak">
+                <rect width="400" height="300" class="il-bg"/>
+                <polygon points="96,70 24,250 236,250" class="il-cone"/>
+                <path d="M96 70 L24 250 M96 70 L236 250" class="il-dash"/>
+                <rect x="82" y="56" width="28" height="28" rx="2" class="il-ink"/>
+                <rect x="38" y="62" width="40" height="16" class="il-fill il-line"/>
+                <rect x="114" y="62" width="40" height="16" class="il-fill il-line"/>
+                <path d="M51 62 V78 M65 62 V78 M127 62 V78 M141 62 V78 M78 70 H82 M110 70 H114" class="il-thin"/>
+                <rect y="250" width="400" height="50" class="il-asphalt"/>
+                <path d="M0 274 H400" class="il-lane"/>
+                <rect x="20" y="200" width="44" height="50" class="il-fill il-line"/>
+                <rect x="20" y="194" width="44" height="8" class="il-hot"/>
+                <rect x="76" y="168" width="52" height="82" class="il-fill il-line"/>
+                <rect x="76" y="162" width="52" height="8" class="il-hot"/>
+                <rect x="140" y="188" width="40" height="62" class="il-fill il-line"/>
+                <rect x="140" y="182" width="40" height="8" class="il-warm"/>
+                <rect x="192" y="210" width="36" height="40" class="il-fill il-line"/>
+                <rect x="192" y="204" width="36" height="8" class="il-hot"/>
+                <rect x="252" y="176" width="48" height="74" class="il-fill il-line"/>
+                <rect x="252" y="170" width="48" height="8" class="il-soft"/>
+                <rect x="314" y="198" width="66" height="52" class="il-fill il-line"/>
+                <rect x="314" y="192" width="66" height="8" class="il-soft"/>
+                <g class="il-cloud">
+                  <circle cx="292" cy="118" r="26"/><circle cx="326" cy="104" r="34"/><circle cx="362" cy="122" r="24"/>
+                  <rect x="266" y="118" width="120" height="28" rx="14"/>
+                </g>
+              </svg>
+            </div>
+            <span class="tag">Satelitní a letecké snímky</span>
+            <h3>Plošný přehled, ale pouze teplota povrchů</h3>
+            <p>Družice snímají rozpálené střechy a asfalt (povrchovou teplotu), nikoliv vzduch, který obyvatelé v ulicích dýchají. Jsou navíc limitovány oblačností a pevnou dobou přeletu.</p>
+          </article>
+        </div>
+        <article class="card us">
+          <div class="pic"><img src="img/stanice-2.jpg" width="1200" height="900" loading="lazy" alt="Měřicí stanice Moving Climate se solárním panelem na střeše vozu"></div>
+          <span class="tag">Moving Climate</span>
+          <h3>Skutečná teplota vzduchu v každé ulici i parku</h3>
+          <p>Mobilní stanice na městských vozech kontinuálně měří reálnou teplotu a kvalitu vzduchu přímo v ulicích. Propojením těchto měření s družicovými daty Copernicus dopočítáváme přesnou teplotní mapu i pro vnitrobloky, parky a pěší zóny.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -192,12 +301,12 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
   <section id="jak">
     <div class="wrap">
       <div class="head">
-        <h2>Jak to funguje</h2>
+        <h2>Nasazení bez zásahu do vozového parku i městského rozpočtu</h2>
       </div>
       <div class="cols">
-        <div><span class="tag">1. Montáž</span><h3>Stanice na střeše vozu</h3><p>Připevní se magnety s jištěním. Nic se nevrtá a nezasahuje do elektroinstalace vozu.</p></div>
-        <div><span class="tag">2. Měření</span><h3>Běžné jízdy</h3><p>Vůz jezdí své obvyklé trasy. Stanici napájí solární panel a řidič ji nemusí obsluhovat.</p></div>
-        <div><span class="tag">3. Výsledky</span><h3>Mapa vašich ulic</h3><p>Data se posílají přes mobilní síť do webového dashboardu. Přes API je můžete napojit i do vlastních systémů.</p></div>
+        <div><span class="tag">1. Okamžitá instalace</span><h3>Magnetické uchycení bez vrtání</h3><p>Autonomní stanici připevníme na střechu vozu pomocí průmyslových magnetů s bezpečnostním jištěním během několika minut. Nezasahujeme do karoserie ani do elektroinstalace vozidla – záruka vozu zůstává plně zachována.</p></div>
+        <div><span class="tag">2. Bezúdržbový provoz</span><h3>Plně autonomní sběr dat při běžných jízdách</h3><p>Vozy MHD, technických služeb či městské policie jezdí své standardní trasy. Stanice je napájena vlastním solárním panelem s chytrým řízením spotřeby, takže funguje celoročně a nevyžaduje žádnou obsluhu ze strany řidiče.</p></div>
+        <div><span class="tag">3. Data jako služba (<span class="nc">DaaS</span>)</span><h3>Přehledný dashboard a otevřené API</h3><p>Město nekupuje ani neudržuje žádný hardware. Za fixní měsíční poplatek získáte přístup k webové mapě přehřívaných lokalit a standardizované GeoJSON API pro přímé napojení do stávajících městských portálů (např. Golemio).</p></div>
       </div>
     </div>
   </section>
@@ -206,16 +315,16 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
     <div class="wrap split">
       <div>
         <div class="head" style="margin-bottom:28px">
-          <h2>Co stanice měří</h2>
-          <p>Stanici vyvíjíme sami, od elektroniky po kryt. Každé měření má přesnou polohu, takže víte, ve které ulici vzniklo.</p>
+          <h2>Měřené veličiny a technická specifikace</h2>
+          <p>Každá jednotka je osazena certifikovanými průmyslovými senzory. Naměřené hodnoty jsou automaticky kalibrovány vůči referenčním stanicím a zpřesněny vícepásmovou satelitní navigací pro spolehlivou lokalizaci i v husté městské zástavbě.</p>
         </div>
         <dl class="spec">
-          <div><dt>Teplota vzduchu</dt><dd>°C</dd></div>
-          <div><dt>Relativní vlhkost</dt><dd>%</dd></div>
-          <div><dt>Prachové částice</dt><dd>PM1, PM2,5, PM4, PM10</dd></div>
-          <div><dt>Tlak vzduchu</dt><dd>hPa</dd></div>
-          <div><dt>Poloha</dt><dd>GPS a Galileo</dd></div>
-          <div><dt>Napájení</dt><dd>solární panel</dd></div>
+          <div><dt>Teplota vzduchu</dt><dd>Vysoká přesnost v radiačním štítu (°C)</dd></div>
+          <div><dt>Relativní vlhkost a tlak</dt><dd>Mikroklimatické parametry (% RH, hPa)</dd></div>
+          <div><dt>Kvalita ovzduší (smog a prach)</dt><dd>Laserová detekce částic PM1.0, PM2.5, PM4 a PM10 (µg/m³)</dd></div>
+          <div><dt>Lokalizace</dt><dd>Vícekonstelační GNSS (Galileo / GPS) pro přesné přiřazení k uliční síti</dd></div>
+          <div><dt>Napájení a přenos dat</dt><dd>Integrovaný solární panel, autonomní bateriové úložiště a mobilní IoT telemetrie (LTE Cat-M1)</dd></div>
+          <div><dt>Provozní model</dt><dd>Pronájem formou služby včetně kompletního servisu a správy zařízení</dd></div>
         </dl>
       </div>
       <figure class="photo"><img src="img/stanice-1.jpg" width="900" height="1600" loading="lazy" alt="Meteostanice Moving Climate se solárním panelem na střeše auta"></figure>
@@ -236,24 +345,34 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
     </div>
   </section>
 
+  <section class="trust" aria-labelledby="podpora">
+    <div class="wrap">
+      <h2 id="podpora">Projekt se rozvíjí s podporou:</h2>
+      <ul>
+        <li><b>ESA BIC Czech Republic</b><span>Finalisté inkubačního programu Evropské kosmické agentury (Liftoff Challenge 2026).</span></li>
+        <li><b>ČVUT v Praze</b><span>2. místo v národní soutěži Technologická olympiáda 2026 (záštita FEL ČVUT).</span></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="contact" id="kontakt">
     <div class="wrap split">
       <div class="head" style="margin-bottom:0">
-        <h2>Chcete vyzkoušet měření ve svém městě?</h2>
-        <p>Napište nám, jaké vozy máte a které části města vás zajímají. Ozveme se a domluvíme schůzku.</p>
+        <h2>Získejte přesná klimatická data pro vaše město</h2>
+        <p>Rádi vám ukážeme výstupy z probíhajícího pilotního provozu a navrhneme rozsah měření pro vaši obec – od krátkodobého zmapování tepelných ostrovů až po dlouhodobý celoroční monitoring.</p>
         <p class="mail"><a href="mailto:zakazky@movingclimate.cz">zakazky@movingclimate.cz</a></p>
       </div>
       <form id="form" name="kontakt" method="post" action="/" data-netlify="true" netlify-honeypot="web">
         <input type="hidden" name="form-name" value="kontakt">
         <div class="frow">
-          <label for="f-name">Jméno<input id="f-name" name="jmeno" autocomplete="name" required maxlength="120"></label>
-          <label for="f-city">Město nebo organizace<input id="f-city" name="mesto" autocomplete="organization" maxlength="160"></label>
+          <label for="f-name">Jméno a příjmení<input id="f-name" name="jmeno" autocomplete="name" required maxlength="120"></label>
+          <label for="f-city">Město / instituce<input id="f-city" name="mesto" autocomplete="organization" maxlength="160"></label>
         </div>
-        <label for="f-mail">E-mail<input id="f-mail" name="email" type="email" autocomplete="email" required maxlength="160"></label>
-        <label for="f-msg">Zpráva<textarea id="f-msg" name="zprava" required maxlength="5000"></textarea></label>
+        <label for="f-mail">E-mail nebo telefon<input id="f-mail" name="email_nebo_telefon" autocomplete="email" required maxlength="160"></label>
+        <label for="f-msg">Zpráva<textarea id="f-msg" name="zprava" required maxlength="5000" placeholder="Zajímá nás ukázka dat / možnosti pilotního měření v našem městě..."></textarea></label>
         <div class="hp" aria-hidden="true"><label for="f-web">Nevyplňujte<input id="f-web" name="web" tabindex="-1" autocomplete="off"></label></div>
         <p class="form-note">Údaje z formuláře použijeme jen k odpovědi na vaši zprávu.</p>
-        <div><button class="btn" type="submit">Odeslat</button></div>
+        <div><button class="btn" type="submit">Odeslat poptávku</button></div>
         <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -279,7 +398,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
     try {
       const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
       if (!r.ok) throw new Error('chyba');
-      form.reset(); note.className = 'form-note ok'; note.textContent = 'Děkujeme, zpráva odešla. Ozveme se co nejdřív.';
+      form.reset(); note.className = 'form-note ok'; note.textContent = 'Děkujeme, poptávka odešla. Ozveme se co nejdřív.';
     } catch (err) {
       note.textContent = 'Zprávu se nepodařilo odeslat. Napište nám prosím přímo na zakazky@movingclimate.cz.';
     } finally { btn.disabled = false; }
