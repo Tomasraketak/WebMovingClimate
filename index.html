@@ -113,16 +113,6 @@ figcaption { font-size: 0.85rem; color: var(--muted); padding-top: 10px; }
 .card.us .pic { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 .nc { text-transform: none; }
 .card .credit { font-size: 0.75rem; color: var(--muted); margin-top: -12px; margin-bottom: 4px; line-height: 1.4; }
-.il-bg { fill: var(--bg-2); }
-.il-soft { fill: var(--line); }
-.il-fill { fill: var(--bg); }
-.il-ink { fill: var(--ink); }
-.il-line { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
-.il-fill.il-line { fill: var(--bg); }
-.il-thin { fill: none; stroke: var(--ink); stroke-width: 1.3; opacity: 0.55; }
-.il-tree { fill: var(--muted); opacity: 0.28; }
-.il-hot { fill: var(--accent); }
-.il-ring { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0.5; }
 @media (max-width: 820px) {
   .compare { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .pair { display: grid; grid-auto-flow: column; grid-auto-columns: 84%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; padding-bottom: 6px; overscroll-behavior-x: contain; }
@@ -222,28 +212,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
         <div class="pair" tabindex="0" aria-label="Současné zdroje dat, posuňte do strany">
           <article class="card">
             <div class="pic">
-              <svg viewBox="0 0 400 300" role="img" aria-label="Ilustrace stacionární meteostanice v parku">
-                <rect width="400" height="300" class="il-bg"/>
-                <rect y="242" width="400" height="58" class="il-soft"/>
-                <line x1="72" y1="242" x2="72" y2="178" class="il-line"/>
-                <circle cx="72" cy="150" r="42" class="il-tree"/>
-                <line x1="352" y1="242" x2="352" y2="196" class="il-line"/>
-                <circle cx="352" cy="174" r="30" class="il-tree"/>
-                <path d="M128 230 H312 M128 214 H312" class="il-thin"/>
-                <path d="M136 206 V242 M164 206 V242 M192 206 V242 M220 206 V242 M248 206 V242 M276 206 V242 M304 206 V242" class="il-thin"/>
-                <path d="M172 172 V242 M228 172 V242 M172 214 L228 196 M228 214 L172 196" class="il-line"/>
-                <polygon points="142,112 258,112 248,98 152,98" class="il-fill il-line"/>
-                <rect x="150" y="112" width="100" height="62" class="il-fill il-line"/>
-                <path d="M158 124 H242 M158 136 H242 M158 148 H242 M158 160 H242" class="il-thin"/>
-                <line x1="290" y1="242" x2="290" y2="58" class="il-line"/>
-                <path d="M272 58 H308" class="il-line"/>
-                <path d="M266 58 a6 6 0 0 0 12 0 M302 58 a6 6 0 0 0 12 0" class="il-line"/>
-                <path d="M290 80 H318" class="il-line"/>
-                <polygon points="318,72 330,80 318,88" class="il-ink"/>
-                <circle cx="200" cy="68" r="7" class="il-hot"/>
-                <circle cx="200" cy="68" r="16" class="il-ring"/>
-              </svg>
+              <img src="img/meteostanice.jpg" width="1000" height="750" loading="lazy" alt="Stacionární meteostanice v oploceném měřicím pozemku na okraji sídliště">
             </div>
+            <span class="credit">Ilustrační foto.</span>
             <span class="tag">Stacionární meteostanice</span>
             <h3>Přesné, ale izolované body</h3>
             <p>Měří pouze jedno konkrétní místo – zpravidla v parku či na okraji zástavby. Pokrytí celého města stacionární sítí by vyžadovalo stovky jednotek a milionové investice.</p>
