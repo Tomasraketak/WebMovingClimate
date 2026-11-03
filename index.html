@@ -154,6 +154,38 @@ textarea { min-height: 120px; resize: vertical; }
 .form-note.ok { color: var(--ink); font-weight: 500; }
 @media (max-width: 560px) { .frow { grid-template-columns: minmax(0, 1fr); } }
 
+/* Telefon */
+.swipe { display: none; }
+@media (max-width: 820px) {
+  .swipe { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 8px; }
+  .swipe-pair { margin-top: -24px; }
+  .shot.map { overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .shot.map img { width: 760px; max-width: none; }
+}
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+  section { padding-block: 48px; }
+  .hero { padding-block: 36px 32px; }
+  .hero .sub { font-size: 1.05rem; }
+  .hero .act { flex-direction: column; }
+  .hero .act .btn, .contact form .btn { display: block; width: 100%; text-align: center; padding: 14px 20px; }
+  header.top .wrap { min-height: 60px; gap: 12px; }
+  .logo { font-size: 1rem; }
+  header.top .btn { font-size: 0.9rem; padding: 9px 14px; }
+  .fact b { font-size: 2.6rem; }
+  .photo img { aspect-ratio: 4 / 3; }
+  .team { gap: 24px; }
+  .team > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 16px; align-items: start; }
+  .team > div img { grid-row: 1 / span 2; width: 96px; margin: 0; }
+  .team > div .role { align-self: start; }
+  .team > div h3 { align-self: end; }
+  .team > div p:last-child { grid-column: 1 / -1; margin-top: 10px; }
+  .contact .head p.mail a { display: inline-block; padding-block: 8px; }
+  input, textarea { padding: 12px; }
+  footer .wrap { flex-direction: column; }
+  footer a { display: inline-block; padding-block: 6px; }
+}
+
 footer { padding-block: 28px; font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--line); }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; }
 </style>
@@ -196,7 +228,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
         <p>Rozdíl teploty vzduchu naměřený během jediné minuty mezi dvěma ulicemi vzdálenými 150 metrů – i na konci října (29. 10. 2026, 14:27). V letních vlnách veder tyto rozdíly přesahují 5 °C. Oficiální stacionární stanice přitom nevidí ani jednu z těchto ulic.</p>
       </div>
       <figure>
-        <div class="shot"><img src="img/mapa.jpg" width="1899" height="860" alt="Mapa Neratovic z dashboardu Moving Climate. Vlevo ulice obarvené podle naměřené teploty, vpravo teplotní mapa části města."></div>
+        <div class="shot map" tabindex="0" aria-label="Mapa, na telefonu ji můžete posouvat do strany"><img src="img/mapa.jpg" width="1899" height="860" alt="Mapa Neratovic z dashboardu Moving Climate. Vlevo ulice obarvené podle naměřené teploty, vpravo teplotní mapa části města."></div>
+        <p class="swipe" aria-hidden="true">Mapu posuňte do strany →</p>
         <figcaption>Vizualizace výstupů v rozhraní MovingClimate: kombinace uličních měření z vozidel a plošného modelu teplotních ostrovů. Mapový podklad © přispěvatelé OpenStreetMap, OpenFreeMap.</figcaption>
       </figure>
     </div>
@@ -229,6 +262,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
             <p>Družice snímají rozpálené střechy a asfalt (povrchovou teplotu), nikoliv vzduch, který obyvatelé v ulicích dýchají. Jsou navíc limitovány oblačností a pevnou dobou přeletu.</p>
           </article>
         </div>
+        <p class="swipe swipe-pair" aria-hidden="true">Posuňte do strany pro další zdroj dat →</p>
         <article class="card us">
           <div class="pic"><img src="img/stanice-2.jpg" width="1200" height="900" loading="lazy" alt="Měřicí stanice Moving Climate se solárním panelem na střeše vozu"></div>
           <span class="tag">Moving Climate</span>
