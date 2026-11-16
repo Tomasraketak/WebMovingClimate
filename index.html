@@ -89,6 +89,8 @@ section { padding-block: 88px; border-top: 1px solid var(--line); }
 figure { margin: 0; }
 .shot { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--bg-2); }
 figcaption { font-size: 0.85rem; color: var(--muted); padding-top: 10px; }
+figure.map-2 { margin-top: 40px; }
+figcaption .note { display: block; font-size: 0.75rem; font-style: italic; margin-top: 4px; }
 
 .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .cols > div { display: grid; gap: 8px; align-content: start; }
@@ -231,6 +233,11 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: s
         <div class="shot map" tabindex="0" aria-label="Mapa, na telefonu ji můžete posouvat do strany"><img src="img/mapa.jpg" width="1899" height="860" alt="Mapa Neratovic z dashboardu Moving Climate. Vlevo ulice obarvené podle naměřené teploty, vpravo teplotní mapa části města."></div>
         <p class="swipe" aria-hidden="true">Mapu posuňte do strany →</p>
         <figcaption>Vizualizace výstupů v rozhraní MovingClimate: kombinace uličních měření z vozidel a plošného modelu teplotních ostrovů. Mapový podklad © přispěvatelé OpenStreetMap, OpenFreeMap.</figcaption>
+      </figure>
+      <figure class="map-2">
+        <div class="shot map" tabindex="0" aria-label="Mapa, na telefonu ji můžete posouvat do strany"><img src="img/mapa-mereni.jpg" width="1917" height="862" loading="lazy" alt="Mapa Neratovic z dashboardu Moving Climate. Trasy vozidel obarvené podle teploty vzduchu za jeden den, 13. 11. 2026."></div>
+        <p class="swipe" aria-hidden="true">Mapu posuňte do strany →</p>
+        <figcaption>Denní přehled v rozhraní MovingClimate: trasy vozidel po Neratovicích obarvené podle teploty vzduchu, s výběrem období a časovou osou. Mapový podklad © přispěvatelé OpenStreetMap, OpenFreeMap.<small class="note">Data na této mapě jsou pouze simulovaná.</small></figcaption>
       </figure>
     </div>
   </section>
